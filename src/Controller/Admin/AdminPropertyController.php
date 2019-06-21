@@ -10,7 +10,6 @@ use App\Repository\PropertyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminPropertyController extends AbstractController
@@ -53,7 +52,7 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($property);
+                        $this->em->persist($property);
             $this->em->flush();
             return $this->redirectToRoute('admin.property.index');
         }
@@ -77,6 +76,7 @@ class AdminPropertyController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->em->flush();
             $this->addFlash('success', 'Création confirmée !');
             return $this->redirectToRoute('admin.property.index');
